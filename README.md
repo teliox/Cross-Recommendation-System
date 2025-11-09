@@ -5,6 +5,24 @@ This project implements a hybrid recommendation system that recommends movies to
 
 This project implements a hybrid recommendation system that recommends movies to users based on their book preferences. It leverages user rating patterns and content features (genre, publication year, title semantics) to bridge the gap between two different domains: books and movies.
 
+## Data Setup
+
+This project requires the following datasets. Please download them from their original sources as redistribution is not permitted.
+
+1.  **MovieLens 1M Dataset**:
+    -   Download from the official GroupLens website: [https://grouplens.org/datasets/movielens/1m/](https://grouplens.org/datasets/movielens/1m/)
+    -   Unzip the file and place the `ml-1m` folder inside the `dataset/` directory. The final path should be `dataset/ml-1m/`.
+
+2.  **Goodreads Book Graph**:
+    -   Download the necessary files from the UCSD project page: [https://sites.google.com/eng.ucsd.edu/ucsdbookgraph/home](https://sites.google.com/eng.ucsd.edu/ucsdbookgraph/home)
+    -   Required files:
+        -   `goodreads_reviews_dedup.json.gz`
+        -   `goodreads_books.json.gz`
+        -   `gooreads_book_genres_initial.json.gz`
+    -   Create a `goodreads` folder inside the `dataset/` directory and place all three `.json.gz` files inside it. The final path should be `dataset/goodreads/`.
+
+After setting up the data, your `dataset` directory should look like this:
+
 ## Table of Contents
 - [Project Overview](#-project-overview)
 - [System Architecture & Pipeline](#-system-architecture--pipeline)
@@ -110,3 +128,15 @@ Our project involved both qualitative and quantitative analysis.
 -   **Quantitative Analysis**: We implemented a novel cross-model validation approach. Instead of using traditional precision/recall, we measured the cosine similarity between our model's recommendations and the user's known book preferences within the latent space learned by LightFM. Hyperparameter tuning via Grid Search revealed that a balanced contribution of genre (`GENRE_WEIGHT=0.7`) and semantic similarity (`SEMANTIC_WEIGHT=0.3`) yielded the most plausible results from LightFM's perspective. This demonstrates that our model's recommendations are consistent with those of a state-of-the-art baseline model.
 
 For detailed results and visualizations (such as t-SNE plots of the embedding space), please refer to our final report and presentation slides.
+
+## Acknowledgements & Data Source
+
+This project would not have been possible without the following publicly available datasets. We are grateful to the researchers who collected and provided them.
+
+-   **MovieLens 1M Dataset**:
+    F. Maxwell Harper and Joseph A. Konstan. 2015. The MovieLens Datasets: History and Context. ACM Transactions on Interactive Intelligent Systems (TiiS) 5, 4, Article 19 (December 2015), 19 pages. DOI=http://dx.doi.org/10.1145/2827872
+
+-   **Goodreads Book Graph**:
+    Mengting Wan, Julian McAuley, "Item Recommendation on Monotonic Behavior Chains", in RecSys'18.
+    Mengting Wan, Rishabh Misra, Ndapa Nakashole, Julian McAuley, "Fine-Grained Spoiler Detection from Large-Scale Review Corpora", in ACL'19.
+    
