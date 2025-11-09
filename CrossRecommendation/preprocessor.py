@@ -146,7 +146,7 @@ def preprocess_data(df, is_movie=True, verbose=True):
         genre_onehot = mlb.fit_transform(df_processed['genre_list'])
         genre_df = pd.DataFrame(genre_onehot, columns=mlb.classes_, index=df_processed.index)
     
-    if verbose: print(f"-> Preprocessed. Discovered {len(genre_df.column)} unique genres.")
+    if verbose: print(f"-> Preprocessed. Discovered {len(genre_df.columns)} unique genres.")
     return df_processed, genre_df
 
 def align_genre_space(movie_genre_df, book_genre_df, verbose=True):
@@ -160,4 +160,5 @@ def align_genre_space(movie_genre_df, book_genre_df, verbose=True):
     book_total_genre_df = book_genre_df.reindex(columns=total_genres, fill_value=0)
     
     if verbose: print("-> Genre space unification completed.")
+
     return movie_total_genre_df, book_total_genre_df, total_genres
